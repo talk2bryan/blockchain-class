@@ -103,9 +103,7 @@ class Block:
             "\n----------------------------------------------------------------------------"
 
 
-class Blockchain:
-
-    
+class Blockchain:    
     max_nonce = 2**32
     block = Block("Genesis Block")
     block.block_hash = block.hash()
@@ -141,27 +139,21 @@ class Blockchain:
 # Main:
 if __name__ == "__main__":
     blockchain = Blockchain()
-    num_zeroes = 6
-    # max_mining_time_seconds = 2
-
+    num_zeroes = 2
+    max_mining_time_seconds = 3
+    
+    start_time = time.time()
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-        for n in range(2, num_zeroes+1):
-            executor.submit(blockchain.mine, Block("BryanWodi"), "0"* (n))
-
-
-    # while True:
-    #     thread_process = multiprocessing.Process(difficulty=timed_mining, name="MineBlock", args=(Block("BryanWodi"), "0"* num_zeroes))
-    #     thread_process.start()
-
-    #     time.sleep(max_mining_time_seconds)
-
-    #     if thread_process.is_alive():
-    #         print("Mining this block took longer than {} seconds, stopping...".format(max_mining_time_seconds))
-    #         thread_process.terminate()
-    #         thread_process.join()
-    #         break
-    #     # thread_process.join()
-    #     num_zeroes += 1
+    	while True:
+    		executor.submit(blockchain.mine, Block("BryanWodi"), "0"* num_zeroes)
+    		
+    		run_time = time.time() - start_time
+    		print("Mining this block took {} seconds".format(run_time))
+    		if (run_time > max_mining_time_seconds):
+    			print("Mining this block took longer than {} seconds, stopping...".format(max_mining_time_seconds))
+    			break
+    		
+    		num_zeroes += 1
 
     print("\n\nPrinting Blockchain")
     print("----------------------------------------------------------------------------")
@@ -170,6 +162,3 @@ if __name__ == "__main__":
         blockchain.head = blockchain.head.next
 
     print("\nEnd of processing.\nAuthor: Bryan Wodi")
-
-    
-
