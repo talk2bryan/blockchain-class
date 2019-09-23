@@ -10,7 +10,7 @@ Date: September 22, 2019
 
 
 To RUN: 
-    python3 block_mining.py
+    python3 WodiA1.py
 '''
 
 import concurrent.futures
