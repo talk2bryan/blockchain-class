@@ -7,6 +7,10 @@ Author: Bryan Wodi
 Instructor: Cuyent A.
 Course: COMP 7570 - Blockchain Analysis
 Date: September 22, 2019
+
+
+To RUN: 
+    python3 block_mining.py
 '''
 
 import concurrent.futures
