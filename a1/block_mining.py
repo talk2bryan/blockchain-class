@@ -12,7 +12,6 @@ Date: September 22, 2019
 import concurrent.futures
 import datetime
 import hashlib
-import multiprocessing
 import threading
 import time
 
@@ -51,14 +50,15 @@ class Block:
 
 class Blockchain:
 
-    def __init__(self):
-        self._lock = threading.Lock()
+    
     max_nonce = 2**32
-
     block = Block("Genesis Block")
     block.block_hash = block.hash()
 
     dummy = head = block
+
+    def __init__(self):
+        self._lock = threading.Lock()
 
     def add(self, block):
         block.previous_hash = self.block.hash()
@@ -81,20 +81,17 @@ class Blockchain:
                     break
                 else:
                     block.nonce += 1
-        
-
-
 
 
 # Main:
 if __name__ == "__main__":
     blockchain = Blockchain()
-    num_zeroes = 5
+    num_zeroes = 6
     # max_mining_time_seconds = 2
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-        for n in range(num_zeroes):
-            executor.submit(blockchain.mine, Block("BryanWodi"), "0"* (n+1))
+        for n in range(2, num_zeroes+1):
+            executor.submit(blockchain.mine, Block("BryanWodi"), "0"* (n))
 
 
     # while True:
