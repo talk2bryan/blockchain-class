@@ -73,7 +73,7 @@ class Blockchain:
 
     def mine(self, block, difficulty):
         with self._lock:
-            print("Started mining block, difficulty: " + difficulty)
+            print("Started mining block with data: {}, difficulty: {}".format(block.data, difficulty))
             for n in range(self.max_nonce):
                 if (block.hash()).startswith(difficulty):
                     block.block_hash = block.hash()
