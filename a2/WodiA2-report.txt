@@ -1,0 +1,15 @@
+Report on the simulation for this assignment:
+
+From running the simulation where the number of inputs per transaction was 1, we 
+had to progressively increase the value x to get closer and closer to 2500 UTXOs
+by the 125th block. The value of x after multiple simulations got closer to 7%
+
+After increasing the value of each transaction input from a sample distribution
+centred along 2, we find that we never got anything near 2500 UTXOs at the 125th 
+block. On average, we got closer to 2500 UTXOs at the 635.2th block with a value
+of x closer to 0.10% 
+
+Conclusion:
+With one input, we need to spend more proportions of UTXOs in order to get to 
+2500 with limited blocks, i.e. 25 blocks in (a). Whereas, with more blocks in the
+blockchain, we can reach 2500 as long as we allow multiple inputs.
