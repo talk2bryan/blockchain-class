@@ -112,8 +112,8 @@ def block_mining_simulation(initial_utxos, transxn_inputs, max_block_height):
     while True:
         input_index = 0
         for curr_block in range(BLOCKCHAIN_HEIGHT, max_block_height):
-            if (transxn_inputs[input_index] > 0):
-                trans_consumed += 1
+            if (transxn_inputs[input_index] < 0):
+                trans_consumed += NUM_COIN_OUTPUTS
             else:
                 trans_consumed = math.ceil(proportion_X * curr_utxos) * \
                 transxn_inputs[input_index]
